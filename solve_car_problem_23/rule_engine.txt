@@ -1,0 +1,33 @@
+'''
+The term Rule Engin is quite ambiguous in that it can be any system that uses
+rules, in any form, that can be applied to data to produce outcomes. This
+includes simple systems like form validation and dynamic expression engines.
+The book how to build a busiess Rules Engine" by Malcolm Chisholm exemplifies
+this ambiguity.
+
+1. A Production Rule System is Turing complete, with a focus on knowledge
+representation to express propositional and first order logic in a concise,
+non-ambiguous and declarative manner. The brain of a production rules system is
+and inference Engine that is able to scale to a large number of rules and facts.
+
+The inference Engine matches facts and data against Production Rules - also
+called Productions or just Rules - to infer conclusions which result in actions.
+A Production Rule is a two-part structure using First Order Logic for resoning
+over knowledge representation.
+
+    when
+        <condition>
+    then
+        <acion>;
+
+
+Why use a Rule Engine?
+ - Some frequently asked questions:
+     1. When should you use a rule engine?
+     2. What advantage does a rule engin have over hand coded "if.. then"
+        approaches?
+     3. Why should you use a rule engine instead of a scripting framework, like
+        BeanShell?
+'''
+
+
