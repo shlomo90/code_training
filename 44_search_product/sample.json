@@ -1,0 +1,1 @@
+{"products": [{"price": 25.0, "name": "Widget", "quantity": 5}, {"price": 15.0, "name": "Thing", "quantity": 5}, {"price": 5.0, "name": "Doodad", "quantity": 10}, {"price": "20", "name": "widget", "quantity": "30"}, {"price": "10", "name": "asdf", "quantity": "30"}]}
