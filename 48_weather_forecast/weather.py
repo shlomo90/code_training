@@ -59,14 +59,21 @@ class InputError(BaseException):
     pass
 
 
+class ResponseError(BaseException):
+    pass
+
+
 class OpenWeatherMap(object):
     def __init__(self, **kwargs):
         self.query = ""
-        self.request_uri = "http://samples.openweathermap.org/data/2.5/weather"
+        self.request_uri = "http://api.openweathermap.org/data/2.5/weather"
         self.response = self.send_request(**kwargs)        
 
         self.weather = json.loads(self.response.text)
-        self._report_weather()
+        if self.weather["cod"] != 200:
+            raise ResponseError("Status is not 200")
+        else:
+            self._report_weather()
 
     def convert_feh_to_cel(self, feh):
         cel = (float(feh) - 32) / 1.8
@@ -221,7 +228,7 @@ class OpenWeatherMap(object):
         else:
             raise InputError("Arguments Err!, We need at least city, country")
 
-        self._set_query("b6907d289e10d714a6e88b30761fae22", key="appid")
+        self._set_query("b15d1860473f03b6cfcb7d8aac83140a", key="appid")
 
         response = requests.get(self.request_uri + "?" + self.query)
         return response
