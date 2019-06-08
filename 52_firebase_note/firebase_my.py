@@ -1,5 +1,5 @@
+#!/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7
 # -*- encoding: utf-8 -*-
-
 
 import requests
 import json
@@ -7,6 +7,7 @@ import firebase
 import datetime
 from firebase import firebase
 
+#TODO: Interactive Command
 #firebase = firebase.FirebaseApplication("https://mynote-724e7.firebaseio.com/", None)
 
 '''
@@ -46,7 +47,30 @@ $mynotes show
 NOTE_URL = "https://mynote-724e7.firebaseio.com/test.json"
 
 
-class MyNotes(object):
+class ConnectFirebase(object):
+    ''' This Class is for just connecting Firbase
+
+    '''
+    URL = "https://mynote-724e7.firebaseio.com/"
+
+    def __init__(self, url=None, connection=None):
+        self.connection = requests.Session() if not connection else connection
+        ret = self.connection.get(self.URL)
+        print "ret {}".format(ret)
+        #print "session is {}".format(self.connection)
+        self.base = url if url else self.URL
+
+    def put(self, path, data, param):
+        return self.connection.put(self.base + path, data)
+
+    def post(self, path, data, param):
+        return self.connection.post(self.base + path, data, param)
+
+    def get(self, path):
+        pass
+
+
+class RemoteNotes(object):
     def __init__(self, uid=None, passwd=None):
         self.firebase = firebase.FirebaseApplication(
                 "https://mynote-724e7.firebaseio.com/", None)
@@ -72,6 +96,7 @@ class MyNotes(object):
 
     def login_account(self, uid, passwd):
         for h, user in self.users.iteritems():
+            print "!!!!!", user
             if user["uid"] == uid and user["passwd"] == passwd:
                 print("Login Success!")
                 self.user_hash = h
@@ -121,10 +146,20 @@ class MyNotes(object):
 
 
 if __name__ == "__main__":
-    #m = MyNotes(uid="weeneen02", passwd="test")
+
+    # Timestamp 기반의 hash 는 변경할 수 없고 사용자가 임의로
+    # firebase 에 추가해야한다.
+
+    '''
+    c = ConnectFirebase()
+    r = c.put('users/', {"key": "YAH!!!!!"}, {"ho": "good"})
+    print r
+    '''
+
+    #m = RemoteNotes(uid="weeneen02", passwd="test")
     #m.push_note(msg="Yeah this is the first message")
 
-    m = MyNotes(uid="test", passwd="test")
+    m = RemoteNotes(uid="test", passwd="test")
     #m.push_note("YEHAAHAHAHAH!:")
     m.get_all_notes()
 
