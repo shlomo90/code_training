@@ -1,4 +1,10 @@
 #python problem 1.
 
+# input part
 name = raw_input("what is your name? ")
-print('Hello, '+name+'. nice to meet you!')
+
+# concat strings part
+msg = 'Hello, ' + name + '. nice to meet you!'
+
+# print string part
+print(msg)
