@@ -1,6 +1,6 @@
-# 코드 트레이닝
+# Code Training
 
-## 목표
+## Purpose
 
-1. 매 주 한 문제 이상 풀도록 한다.
-2. Python 언어로 풀며, 각 문제의 도전과제까지 풀도록 하자.
+1. Improve Python Language 
+2. Think big making programming
