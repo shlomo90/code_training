@@ -14,13 +14,29 @@ Hello, Brian. nice to meet you!
 
 package main
 
-import "fmt"
+import (
+    "fmt"
+)
+
+var greeting = make(map[string]string)
+
+// Call only once
+func init() {
+    greeting["jay"] = "Good to see you Jay!"
+    greeting["brian"] = "Wow, Look at you Brian!"
+    greeting["Jonathan"] = "What's the matter?!"
+    greeting["default"] = "nice to meet you!"
+}
 
 func main() {
     var name string
 
-    fmt.Print("What is your name? ")
+    fmt.Printf("What is your name? ")
     fmt.Scanf("%s", &name)
 
-    fmt.Printf("Hello, %s. nice to meet you!\n", name)
+    if greeting[name] != "" {
+        fmt.Printf("Hello, %s. %s", name, greeting[name])
+    } else {
+        fmt.Printf("Hello, %s. %s", name, greeting["default"])
+    }
 }
