@@ -19,3 +19,22 @@ Homer has 5 characters.
 도전과제
 * (V) 사용자가 아무 것도 입력하지 않은 채로 엔터 키를 치면 무엇이라도 입력하라는 메세지를 나타내보자.
 */
+
+package main
+
+import "fmt"
+
+func main() {
+	var input string
+
+	for {
+		fmt.Printf("What is the input string? ")
+		fmt.Scanf("%s", &input)
+		if len(input) == 0 {
+			fmt.Printf("input something!\n")
+		} else {
+			break
+		}
+	}
+	fmt.Printf("%s has %d characters\n", input, len(input))
+}
